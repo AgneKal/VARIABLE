@@ -326,14 +326,29 @@ console.log(string.concat(pakeistasStringas))// Man labai patinka mokytis JavaSc
 console.log(string.concat(' taip man ir reikia'))// Man labai patinka mokytis JavaScript taip man ir reikia
 
 // 7. String'o tarpų pradžioje ir gale panaikinimas
-// .trim()
+// a) .trim()
 
-console.log(' Labas     '.trim()); //Labas
+console.log(' Labas     '.trim()); //'Labas'
+
+// b) .trimStart()
+console.log(' Labas     '.trimStart()); //'Labas     '
+
+// c) .trimEnd()
+console.log(' Labas     '.trimEnd()); //' Labas'
 
 // 8. Kartojimas
 // .repeat(3)
-
 console.log('miau '.repeat(5)); // 'miau miau miau miau miau '
+
+// 9. Simbolių pridėjimas pradžioje ir gale
+// a) .padStart(kiekSimboliųReikia, kuoUžpildyti)
+
+const pvz = '5';
+console.log(pvz.padStart(3, '0')); // '005'
+
+// b) .padEnd(kiekSimboliųReikia, kuoUžpildyti)
+
+console.log(pvz.padEnd(3, '0')); // '500'
 
 // 20 Praktinių Užduočių
 // Sukurkite stringą ir išveskite jo ilgį.
