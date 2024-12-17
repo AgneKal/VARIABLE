@@ -249,7 +249,7 @@ console.log(string3)
 
 // Metodai
 
-let string = 'Man labai patinka mokytis JavaScript'
+let string = 'Man anksčiau labai patiko mokytis JavaScript 🎉';
 // 1. .length - apskaičiuoja ilgį (su tarpais);
 
 console.log(string.length);
@@ -389,3 +389,143 @@ console.log(pvz.padEnd(3, '0')); // '500'
 // 13. Pašalinkite paskutinius 3 simbolius string'e "JavaScript" ir atspausdinkite rezultatą.
 // 14. Prie string'o "Likusios dienos: " pridėkite skaičių 5 iš daysLeft kintamojo.
 // 15. Tekste "mokytojas" pakeiskite pabaigą į "ėja", kad gautumėte "mokytoja".
+
+
+console.clear();
+// let string = 'Man anksčiau labai patiko mokytis JavaScript 🎉';
+
+// ASCII ir UNICODE
+// https://ascii.cl/
+//https://symbl.cc/
+
+// .charAt(index) - grąžina simbolį, esantį nurodytame indekse;
+console.log(string.charAt(0));
+
+
+// .charCodeAt(index) .codePointAt(index) - grąžina simbolio ASCII arba Unicode reikšmę, esančią nurodytame index'e
+
+console.log(string.charCodeAt(1)); //97 <--pakankamas, kai naudojami paprasti simboliai
+console.log(string.codePointAt(1)); //97 <-- reiktų naudoti, kai naudojami surogatiniai simboliai, pvz., emoji ir pan.
+
+// Palyginimas
+// Funkcija	    | Grąžina	            | Veikia su surogatais?          | Pavyzdys su 😊 (128522)
+// charCodeAt   | 16 bitų reikšmę	    | Grąžina tik dalinę reikšmę	 | charCodeAt(0) -> 55357
+// codePointAt	| Unicode kodų tašką	| Grąžina pilną Unicode reikšmę  | codePointAt(0) -> 128522
+
+// .normalize() - yra naudojamas normalizuoti Unicode simbolius pagal nurodytą normalizacijos formą, tai padeda užtikrinti, kas skirtingai užrašyti simboliai, kurie vizualiai atrodo vienodai, būtų laikomi identiškais
+
+// .normalize() - yra naudojamas normalizuoti Unicode simbolius pagal nurodytą Unicode normalizacijos formą. Tai padeda užtikrinti, kad skirtingai užrašyti simboliai, kurie vizualiai atrodo vienodai, būtų laikomi identiškais.
+
+const name1 = '\u0041\u006d\u00e9\u006c\u0069\u0065';
+const name2 = '\u0041\u006d\u0065\u0301\u006c\u0069\u0065';
+
+console.log(`${name1}, ${name2}`); //"Amélie, Amélie"
+console.log(name1 === name2); // false
+console.log(name1.length === name2.length); // false
+
+const normalizeName1 = name1.normalize();
+const normalizeName2 = name2.normalize();
+
+console.log(`${normalizeName1}, ${normalizeName2}`); //"Amélie, Amélie"
+console.log(normalizeName1 === normalizeName2); // true
+console.log(normalizeName1.length === normalizeName2.length); // true
+
+// Normalizacijos formos
+// normalize(forma) metodas leidžia pasirinkti vieną iš šių Unicode normalizacijos formų:
+
+// Forma	Aprašymas
+// NFC	| Normalizuotas sudėtinis formatas(Canonical Composition).Kombinuoja simbolius, kai įmanoma.
+// NFD	| Normalizuotas išskaidytas formatas(Canonical Decomposition).Išskaido simbolius.
+// NFKC	| Sudėtinis formatas su suderinamumu(Compatibility Composition), bet pašalina stiliaus skirtumus.
+// NFKD	| Išskaidytas formatas su suderinamumu(Compatibility Decomposition), bet pašalina stiliaus skirtumus.
+
+// 1. Normalizavimas su NFC ir NFD
+let strN = "a\u0301"; // "a" su akcentu (U+0061 ir U+0301)
+console.log(strN); // "á" (atrodo kaip "á")
+
+// a) Naudojant NFC
+let normalizedNFC = strN.normalize("NFC");
+console.log(normalizedNFC); // "á" (vienas simbolis U+00E1)
+
+// b) Naudojant NFD
+let normalizedNFD = strN.normalize("NFD");
+console.log(normalizedNFD); // "á" (du simboliai: U+0061 ir U+0301)
+
+// 2. Normalizavimas su NFKC ir NFKD
+let strApskritime = "①"; // Cirkuliarinis numeris "1" (U+2460)
+let paprastasVienetas = '1';
+
+console.log(strApskritime === paprastasVienetas); //false
+
+// a) naudojant NFC
+console.log(strApskritime.normalize("NFC")); // "①" (nekeičia)
+console.log(strApskritime.normalize("NFC") === paprastasVienetas); //false
+
+// b) naudojant NFKC (NFKD veikia atitinkamai)
+console.log(strApskritime.normalize("NFKC")); // "1" (pakeičia į įprastą "1")
+console.log(strApskritime.normalize("NFKC") === paprastasVienetas); //true
+
+// REGEX
+// regex'as.test(kintamasis)
+
+const regex1 = /\d{4}-\d{2}-\d{2}/
+
+const testDate = '2024-12-17';
+const testDate1 = '2024-12-7';
+
+console.log(regex1.test(testDate));
+console.log(regex1.test(testDate1));
+
+// .match(regex'as) - grąžina masyvą su visais atitikimais pagal nurodytą regex'ą
+
+let str = "The quick brown fox jumps over the lazy dog";
+const regex2 = /\b\w{3}\b/g;
+
+console.log(str.match(regex2)); // ["The", "fox", "the", "dog"]
+
+const dateStr = '2024-12-17';
+
+const regex3 = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/
+
+const match = dateStr.match(regex3);
+
+if (match) {
+    console.log(`Metai: ${match.groups.year}`);
+    console.log(`Mėnuo: ${match.groups.month}`);
+    console.log(`Diena: ${match.groups.day}`);
+} else {
+    console.log('Blogas formatas');
+}
+
+// .matchAll(regex'as) - grąžina iterator'ių, kuris leidžia pereiti per visus atitikimus po vieną
+// su paprastu tekstu:
+
+let strCat = "cat, caterpillar, catalogue";
+let regex = /cat/g;
+
+let matches = strCat.matchAll(regex);
+console.log(matches); //RegExpStringIterator {}
+
+for (let match of matches) {
+    console.log(match[0], match.index); // "cat" 0, "cat" 5, "cat" 18
+}
+
+// su grupėmis:
+let strGrupes = "2024-12-12, 2023-11-01";
+let regexGrupems = /(\d{4})-(\d{2})-(\d{2})/g; // būtinas global --> /g
+
+let matchesGrupems = strGrupes.matchAll(regexGrupems);
+
+for (let match of matchesGrupems) {
+    console.log(match[0]); // "2024-12-12", "2023-11-01"
+    console.log(match[1]); // "2024", "2023" (metai)
+    console.log(match[2]); // "12", "11" (mėnuo)
+    console.log(match[3]); // "12", "01" (diena)
+    console.log(match.index); // 0, 13 (pozicija eilutėje)
+}
+
+// .search(regex'as) - grąžina pirmą atitikimo vietą pagal reguliariąją išraišką. Jei nėra atitikimo, grąžina -1
+console.log(string.search(/labai/)); //13
+
+// https://regexone.com/
+
