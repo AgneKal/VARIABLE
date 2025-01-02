@@ -207,3 +207,132 @@ const flatMapMasyvas = [1, 2, 3, 4, 5];
 const flatMapResult = flatMapMasyvas.flatMap(el => [el, el * 3]);
 console.log(flatMapResult);//(10) [1, 3, 2, 6, 3, 9, 4, 12, 5, 15]
 
+console.clear();
+// .toReversed() - sukuria naują masyvą su apversta elementų tvarka
+const toReversedMasyvas = [1, 2, 3, 4, 5];
+const toReversedResult = toReversedMasyvas.toReversed();
+console.log(toReversedResult); //(5) [5, 4, 3, 2, 1]
+console.log(toReversedMasyvas); //(5) [1, 2, 3, 4, 5]
+
+// .toSorted() - sukuria naują masyvą su surūšiuotais elementais
+
+const toSortedMasyvas = ['eglė', 'rudmėsė', 'ėdžios', 'žvynabudė', 'žiema', 'žala', 'česnakas', 'citrina', 'zebras']
+const toSortedResult = toSortedMasyvas.toSorted();
+console.log(toSortedResult); // (9)['citrina', 'eglė', 'rudmėsė', 'zebras', 'česnakas', 'ėdžios', 'žala', 'žiema', 'žvynabudė']
+console.log(toSortedMasyvas); //(9) ['eglė', 'rudmėsė', 'ėdžios', 'žvynabudė', 'žiema', 'žala', 'česnakas', 'citrina', 'zebras']
+
+// skaičius rūšiuojame kaip su .sort() metodu, paduodami funkciją (a, b) => a - b arba (a, b) => b - a
+
+// .toSpliced() - sukuria naują masyvą, įterpiant arba pašalinant elementus, nekeičiant originalaus masyvo
+const toSplicedMasyvas = ['akordeonas', 'būgnai', 'cimbolai', 'dūdelė'];
+const toSplicedResult = toSplicedMasyvas.toSpliced(1, 0, 'pianinas');
+console.log(toSplicedResult); // (5)['akordeonas', 'pianinas', 'būgnai', 'cimbolai', 'dūdelė']
+console.log(toSplicedMasyvas); // (4) ['akordeonas', 'būgnai', 'cimbolai', 'dūdelė']
+
+// 3. Rasti indeksus
+// Metodai, skirti gauti arba dirbti su indeksais
+
+// .indexOf() - grąžina pirmo rasto elemento indeksą
+const indexOfMasyvas = [57, 22, 78, 13, 4, 78];
+const indexOfResult = indexOfMasyvas.indexOf(78);
+console.log(indexOfResult); // 2
+
+// .lastIndexOf() - grąžina paskutinio elemento indeksą
+const lastIndexOfMasyvas = [57, 22, 78, 13, 4, 78];
+const lastIndexOfResult = lastIndexOfMasyvas.lastIndexOf(78);
+console.log(lastIndexOfResult); // 5
+
+// .findIndex() - grąžina pirma elementą, atitinkantį sąlygą
+const findIndexMasyvas = [57, 22, 78, 13, 4, 78];
+const findIndexResult = findIndexMasyvas.findIndex(el => el > 60);
+console.log(findIndexResult); // 2
+
+// .findLastIndex() - grąžina pirma elementą, atitinkantį sąlygą
+const findLastIndexMasyvas = [57, 22, 78, 13, 4, 78];
+const findLastIndexResult = findLastIndexMasyvas.findLastIndex(el => el > 60);
+console.log(findLastIndexResult); // 5
+
+// 4. Rasti elementą
+// Metodai, susiję su konkrečių elementų radimu
+
+// .find(callbackFn(el, i, array), thisArg) - grąžina pirmą elementą, atitinkantį sąlygą
+const findMasyvas = [57, 22, 78, 13, 4, 78];
+const findResult = findMasyvas.find(el => el > 60);
+console.log(findResult); // 78
+
+// .findLast(callbackFn(el, i, array), thisArg) - grąžina paskutinį elementą, atitinkantį sąlygą
+const findLastMasyvas = [57, 22, 78, 13, 4, 78];
+const findLastResult = findLastMasyvas.findLast(el => el > 60);
+console.log(findLastResult); // 78
+
+// .at(index) - grąžina elementą pagal nurodytą indeksą, palaiko ir neigiamus indeksus
+const atMasyvas = [57, 22, 78, 13, 4, 78];
+const atResult = atMasyvas.at(3);
+console.log(atResult); // 13
+
+const atResultNeigiamas = atMasyvas.at(-3);
+console.log(atResultNeigiamas); // 13
+
+
+// 5. Patikrinti ar masyve yra
+
+// .includes(koIeškome, nuoKurioIndeksoTikrinam) - tikrina, ar masyve yra tam tikras elementas
+
+const includesMasyvas = [57, 22, 78, 13, 4, 78];
+const includesResult = includesMasyvas.includes(13);
+console.log(includesResult); // true
+
+const includesResultFalse = includesMasyvas.includes(99);
+console.log(includesResultFalse); // false
+
+// .every(callbackFn(el, i, array), thisArg) - tikrina, ar visi elementai atitinka sąlygą
+
+const everyMasyvas = [57, 22, 78, 13, 4, 78];
+const everyResult = everyMasyvas.every(el => el > 3);
+console.log(everyResult); // true
+
+const everyResultFalse = everyMasyvas.every(el => el > 4);
+console.log(everyResultFalse); // false
+
+// .some(callbackFn(el, i, array), thisArg) - tikrina, ar bent vienas elementas atitinka sąlygą
+
+const someMasyvas = [57, 22, 78, 13, 4, 78];
+const someResult = someMasyvas.some(el => el > 70);
+console.log(someResult); // true
+
+const someResultFalse = someMasyvas.some(el => el > 100);
+console.log(someResultFalse); // false
+
+// 6. Sukurti stringą iš masyvo
+
+// .join(simbolisTarpString()(default - ,) - sujungia masyvo elementus į stringą
+const joinMasyvas = ['pavasaris', 'vasara', 'ruduo', 'žiema'];
+const joinResult = joinMasyvas.join(' ');
+console.log(joinResult);// pavasaris vasara ruduo žiema
+
+// .toString() - konvertuoja masyvą į stringą
+const toStringMasyvas = ['pavasaris', 'vasara', 'ruduo', 'žiema'];
+const toStringResult = toStringMasyvas.toString();
+console.log(toStringResult);// pavasaris,vasara,ruduo,žiema
+
+// .toLocaleString() - konvertuoja masyvą į stringą pagal lokalę
+const toLocaleStringMasyvas = [123456.789, new Date('2025-01-02')];
+const toLocaleStringResult = toLocaleStringMasyvas.toLocaleString('en-US');
+console.log(toLocaleStringResult); // 123,456.789,1/2/2025, 2:00:00 AM
+
+// 7. Transformuoti masyvą į reikšmę
+// .reduce(callbackFn, initialValue) - sumažina masyvą į vieną reikšmę
+const reduceMasyvas = [57, 22, 78, 13, 4, 78, 8];
+const reduceResult = reduceMasyvas.reduce((sum, el) => sum + el, 0)
+console.log(reduceResult);// 260
+
+const reduceLMasyvas = [[1, 17], [2, 5], [3, 9], [4, 25]];
+const reduceLResult = reduceLMasyvas.reduce((acc, el) => acc.concat(el), []);
+console.log(reduceLResult);// [1, 17, 2, 5, 3, 9, 4, 25]
+
+// .reduceRight() - veikia kaip reduce(), bet pritaiko funkciją nuo paskutinio elemento iki pirmo
+const reduceRightMasyvas = [[1, 17], [2, 5], [3, 9], [4, 25]];
+const reduceRightResult = reduceRightMasyvas.reduceRight((acc, el) => acc.concat(el), []);
+console.log(reduceRightResult);// [4, 25, 3, 9, 2, 5, 1, 17]
+
+
