@@ -275,7 +275,6 @@ console.log(atResultNeigiamas); // 13
 
 
 // 5. Patikrinti ar masyve yra
-
 // .includes(koIeškome, nuoKurioIndeksoTikrinam) - tikrina, ar masyve yra tam tikras elementas
 
 const includesMasyvas = [57, 22, 78, 13, 4, 78];
