@@ -97,29 +97,29 @@
 // console.log(tosPaciosRaides('.', '?')); // -1
 
 // b. Variantas, kai visos raidės tinka, ne tik lotynų abėcėlės
-function tosPaciosRaides1(raide1, raide2) {
-    const didziojiRaide1 = raide1.toUpperCase();
-    const didziojiRaide2 = raide2.toUpperCase();
-    const mazojiRaide1 = raide1.toLowerCase();
-    const mazojiRaide2 = raide2.toLowerCase();
+// function tosPaciosRaides1(raide1, raide2) {
+//     const didziojiRaide1 = raide1.toUpperCase();
+//     const didziojiRaide2 = raide2.toUpperCase();
+//     const mazojiRaide1 = raide1.toLowerCase();
+//     const mazojiRaide2 = raide2.toLowerCase();
 
-    if ((mazojiRaide1 === didziojiRaide1) || (mazojiRaide2 === didziojiRaide2)) {
-        return -1;
-    } else if ((raide1 === didziojiRaide1 && raide2 === didziojiRaide2) || (raide1 === mazojiRaide1 && raide2 === mazojiRaide2)) {
-        return 1;
-    } else if ((raide1 === didziojiRaide1 || raide1 === mazojiRaide1) && (raide2 === didziojiRaide2 || raide2 === mazojiRaide2)) {
-        return 0;
-    } else {
-        return 'kažkas ne taip';
-    }
-}
+//     if ((mazojiRaide1 === didziojiRaide1) || (mazojiRaide2 === didziojiRaide2)) {
+//         return -1;
+//     } else if ((raide1 === didziojiRaide1 && raide2 === didziojiRaide2) || (raide1 === mazojiRaide1 && raide2 === mazojiRaide2)) {
+//         return 1;
+//     } else if ((raide1 === didziojiRaide1 || raide1 === mazojiRaide1) && (raide2 === didziojiRaide2 || raide2 === mazojiRaide2)) {
+//         return 0;
+//     } else {
+//         return 'kažkas ne taip';
+//     }
+// }
 
-console.log(tosPaciosRaides1('ą', 'č')); // 1
-console.log(tosPaciosRaides1('Ą', 'Č')); // 1
-console.log(tosPaciosRaides1('ą', 'Č')); // 0
-console.log(tosPaciosRaides1('Ą', 'č')); // 0
-console.log(tosPaciosRaides1('.', 'č')); // -1
-console.log(tosPaciosRaides1('ą', '?')); // -1
+// console.log(tosPaciosRaides1('ą', 'č')); // 1
+// console.log(tosPaciosRaides1('Ą', 'Č')); // 1
+// console.log(tosPaciosRaides1('ą', 'Č')); // 0
+// console.log(tosPaciosRaides1('Ą', 'č')); // 0
+// console.log(tosPaciosRaides1('.', 'č')); // -1
+// console.log(tosPaciosRaides1('ą', '?')); // -1
 
 // 4. Užduotis
 // Prašykite funkciją, kuri grąžina masyvo ne nelyginius skaičius.
@@ -129,8 +129,7 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Atrinkti skaičiai turi būti grąžinti ta pačia tvarka kaip originaliame masyve.
 
 // function neNelyginiai(masyvas) {
-//     //čia visa logika
-//     return;
+//     return masyvas.filter(el => el % 2 === 0);
 // }
 
 // console.log(neNelyginiai([0, 1, 2])); // [0, 2]
@@ -147,14 +146,23 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 
 // a. Variantas einant ciklu per masyvą
 // function nedaugiauNeiNKartu(masyvas, n) {
-//     //čia visa logika
-//     return
+//     const rezultatas = [];
+//     masyvas.forEach(el => {
+//         if (rezultatas.filter(e => e === el).length < n) {
+//             rezultatas.push(el);
+//         }
+//     });
+//     return rezultatas;
 // }
 
 // b. Variantas naudojant filtravimą filtravime.
 // function nedaugiauNeiNKartu(masyvas, n) {
-//     //čia visa logika
-//     return
+//     const rezultatas = masyvas.filter((el, index, arr) => {
+//         const sliceMasyvas = arr.slice(0, index + 1);
+//         const pasikartojimai = sliceMasyvas.filter(x => x === el).length;
+//         return pasikartojimai <= n;
+//     })
+//     return rezultatas;
 // }
 
 // console.log(nedaugiauNeiNKartu([1, 3, 4, 1, 4, 1, 4, 3], 2)); // [1, 3, 4, 1, 4, 3]
@@ -169,8 +177,9 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // (695, 2) => 6 ** 2 + 9 ** 3 + 5 ** 4 = 36 + 729 + 625 = 1390 / 695 = 2
 
 // function skaiciuLaipsniai(a, b) {
-//     //čia visa logika
-//     return
+//     const digArr = a.toString().split('').map(Number);
+//     const digReduce = digArr.reduce((sum, el, i) => sum += el ** (i + b), 0);
+//     return digReduce % a === 0 ? digReduce / a : -1;
 // }
 
 // console.log(skaiciuLaipsniai(89, 1)); // 1
@@ -186,26 +195,34 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // 'šeRLokaI' -> 'Labas Šerlokai!'
 
 // function pasisveikinimas(vardas) {
-//     //čia visa logika
-//     return
+//     const pirmaDidzioji = vardas[0].toUpperCase();
+//     const likusios = vardas.slice(1).toLowerCase();
+//     return `Labas ${pirmaDidzioji + likusios}!`;
 // }
 
-// console.log(pasisveikinimas('anTUAnai'));
-// console.log(pasisveikinimas('LiuDVikai'));
+// console.log(pasisveikinimas('anTUAnai')); // Labas Antuanai!
+// console.log(pasisveikinimas('LiuDVikai')); // Labas Liudvikai!
 
 // 8. Užduotis
 // Parašykite funkciją, kuriai paduodame kortą (pvz. 4♦, 10♥, Q♣, A♠) ir kuri grąžina kortos rūšies pavadinimą žodžiais (pvz., būgnai, širdys, kryžiai, vynai).
 
 // a. Variantas su if
 // function kortosRusis(korta) {
-//     //čia visa logika
-//     return
+//     if (korta.includes('♥')) return 'širdys';
+//     if (korta.includes('♦')) return 'būgnai';
+//     if (korta.includes('♣')) return 'kryžiai';
+//     if (korta.includes('♠')) return 'vynai';
 // }
+
 
 // // b. Variantas su switch
 // function kortosRusis(korta) {
-//     //čia visa logika
-//     return
+//     switch (korta.slice(-1)) {
+//         case '♥': return 'širdys';
+//         case '♦': return 'būgnai';
+//         case '♣': return 'kryžiai';
+//         case '♠': return 'vynai';
+//     }
 // }
 
 // console.log(kortosRusis('4♦')); // būgnai
@@ -218,14 +235,15 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 
 // a. variantas su dirbant su kiekvienu argumentu
 // function amziausSpejimas(metai1, metai2, metai3, metai4, metai5, metai6, metai7, metai8) {
-//     // čia visa logika
-//     return
+//     const kvadratuIrSuma = metai1 ** 2 + metai2 ** 2 + metai3 ** 2 + metai4 ** 2 + metai5 ** 2 + metai6 ** 2 + metai7 ** 2 + metai8 ** 2;
+//     const saknis = Math.sqrt(kvadratuIrSuma);
+//     return Math.floor(saknis / 2);
 // }
 
 // b. Variantas paimant argumentus kaip masyvą
 // function amziausSpejimas(metai1, metai2, metai3, metai4, metai5, metai6, metai7, metai8) {
-//     // čia visa logika
-//     return
+//     const suma = [...arguments].map(el => el ** 2).reduce((suma, el) => suma += el, 0);
+//     return Math.floor(Math.sqrt(suma) / 2);
 // }
 
 // console.log(amziausSpejimas('65', '87', '30', '58', '92', '78', '68', '73')); // 100
@@ -235,8 +253,19 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Parašykite funkciją, kuriai paduodamas stringas, kuriame reikšmės atskirtos kableliais. Funkcija turi grąžinti stringą, kuriame pašalinti pirmas ir paskutinis elementai, o skyrikliui vietoje kablelio naudojamas tarpas. Jei nėra ką grąžinti pagal nurodytas sąlygas, grąžinamas null.
 
 // function trumpasStringasSuTarpais(stringas) {
-//     // čia visa logika
-//     return
+//     const masyvasIsStringo = stringas.split(',');
+//     if (masyvasIsStringo.length <= 2) {
+//         return null
+//     }
+//     const bePirmoIrPaskutinio = masyvasIsStringo.slice(1, -1);
+//     const result = bePirmoIrPaskutinio.join(' ');
+//     return result;
+// }
+
+// Trumpas variantas
+// function trumpasStringasSuTarpais(stringas) {
+//     const stringoIlgis = stringas.split(',').length;
+//     return stringoIlgis > 2 ? stringas.split(',').slice(1, -1).join(' ') : null;
 // }
 
 // console.log(trumpasStringasSuTarpais('')); // null
@@ -255,14 +284,24 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 
 // a. Variantas naudojant for ciklą
 // function eglute(aukstai) {
-//     // čia visa logika
-//     return
+//     const egle = [];
+//     for (let i = 0; i < aukstai; i++) {
+//         const tarpai = ' '.repeat(aukstai - i - 1);
+//         const zvaigzdutes = '*'.repeat(2 * i + 1)
+//         egle.push(tarpai + zvaigzdutes + tarpai);
+//     }
+//     return egle.join('\n')
 // }
 
 // b. Variantas naudojant .map
 // function eglute(aukstai) {
-//     // čia visa logika
-//     return
+//     const egle = new Array(aukstai).fill('');
+//     const result = egle.map((_, i) => {
+//         const tarpai = ' '.repeat(aukstai - i - 1);
+//         const zvaigzdutes = '*'.repeat(2 * i + 1)
+//         return tarpai + zvaigzdutes + tarpai;
+//     })
+//     return result.join('\n');
 // }
 
 
@@ -282,9 +321,17 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Parašykite funkciją, kuri pašalina visus '!' iš stringo ir grąžina stringą tik su šauktuku gale.
 
 // function sauktukai(stringas) {
-//     // čia visa logika
-//     return
+//     const masyvas = stringas.split('');
+//     const masyvasBeSauktuku = masyvas.filter(el => el !== '!');
+//     const atgalStringas = masyvasBeSauktuku.join('') + '!';
+//     return atgalStringas;
 // }
+
+// Trumpas variantas
+// function sauktukai(stringas) {
+//     return stringas.split('').filter(el => el !== '!').join('') + '!';
+// }
+
 
 // console.log(sauktukai("Cha!")); // Cha!
 // console.log(sauktukai("Cha!!!")); // Cha!
@@ -295,8 +342,7 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Duotas masyvas su teigiamais ir neigiamais skaičiais. Parašykite funkciją, kuri masyve pakeis neigiamus skaičius į teigiamus ir atvirkščiai.
 
 // function keitimas(masyvas) {
-//     //čia visa logika
-//     return
+//     return masyvas.map(el => el === 0 ? el : -el);
 // }
 
 // console.log(keitimas([-4, 2, 0, 6, -9])); // [4, -2, 0, -6, 9]
@@ -310,8 +356,15 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // artimiausiasKvadratas(35) -> artimiausias kvadratas 36 (6**2)
 
 // function artimiausiasKvadratas(sk) {
-//     //čia visa logika
-//     return
+//     const saknis = Math.sqrt(sk);
+//     const mKv = Math.floor(saknis) ** 2;
+//     const dKv = Math.ceil(saknis) ** 2;
+//     return saknis % Math.round(saknis) === 0 ? sk : sk - mKv > dKv - sk ? dKv : mKv;
+// }
+
+// Trumpas variantas
+// function artimiausiasKvadratas(sk) {
+//     return Math.pow(Math.round(Math.sqrt(sk)), 2)
 // }
 
 // console.log(artimiausiasKvadratas(5)); // 4
@@ -322,12 +375,16 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Žmonės stovi bendroje eilėje, vėliau žmonės skirstosi į dvi eiles, pirmas žmogus eina į pirmą eilę, antras į antrą, trečias į pirmą, ketvirtas į antrą ir t.t.
 // Parašykite funkciją, kuriai paduodamas masyvas su žmonių svoriais, o grąžinama pirmos eilės žmonių svorių suma ir antros eilės žmonių svorių suma, kaip masyvas.
 
-// Pavyzdys:
-// eiliuSvoriai([48, 44, 62, 76]) => [110, 120]
-
 // function eiliuSvoriai(masyvas) {
-//     //čia visa logika
-//     return
+//     const pirmaEile = [];
+//     const antraEile = [];
+//     masyvas.forEach((el, i) => i % 2 === 0 ? pirmaEile.push(el) : antraEile.push(el));
+//     return [pirmaEile.reduce((sum, el) => sum += el, 0), antraEile.reduce((sum, el) => sum += el, 0)]
+// }
+
+// Trumpas variantas
+// function eiliuSvoriai(masyvas) {
+//     return masyvas.reduce((acc, el, i) => (acc[i % 2] += el, acc), [0, 0])
 // }
 
 // console.log(eiliuSvoriai([48, 44, 62, 76])); // [110, 120]
@@ -341,8 +398,16 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // didelisStringas('as', 'tu') => aiprsv
 
 // function didelisStringas(s1, s2) {
-//     //čia visa logika
-//     return
+//     const masyvasIsStringu = (s1 + s2).split('').sort();
+//     const setasIsMasyvo = new Set(masyvasIsStringu);
+//     const masyvasIsSeto = [...setasIsMasyvo];
+//     const stringasIsMasyvo = masyvasIsSeto.join('')
+//     return stringasIsMasyvo;
+// }
+
+// Trumpas variantas
+// function didelisStringas(s1, s2) {
+//     return [...new Set(s1 + s2)].sort().join('');
 // }
 
 // console.log(didelisStringas('labanakt', 'vidurvasaris')); // abdiklnrstuv
@@ -354,8 +419,19 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Jūs norite užsisakyti reklamą švieslentėje. Vieno simbolio kaina 3Eur (tarpas taip pat simbolis). Parašykite funkciją, kuri apskaičiuotų reklamos kainą. Funkcijoje nenaudokite '*' simbolio daugybai.
 
 // function reklama(stringas, kaina) {
-//     // čia visa logika
-//     return
+//     return stringas.split('').reduce(acc => acc += kaina, 0);
+// }
+
+
+// Įdomesnis variantas
+// function reklama(stringas, kaina) {
+//     const x = 1 / kaina;
+//     return stringas.length / x;
+// }
+
+// Trumpas variantas
+// function reklama(stringas, kaina) {
+//     return stringas.repeat(kaina).length;
 // }
 
 // console.log(reklama('Sveiki atvykę!', 3)); // 42
@@ -365,8 +441,14 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Parašykite funkciją, kuri priims stringą iš skaičių. Ir skaičius mažesnius už 5 pakeis 0, o didesnius ar lygius 5 pakeis 1. Funkcija grąžins stringą.
 
 // function stringasIskaicius(stringas) {
-//     // čia visa logika
-//     return
+//     const masyvasIsStringo = stringas.split('');
+//     const keitimasISkaicius = masyvasIsStringo.map(el => el < 5 ? 0 : 1);
+//     return keitimasISkaicius.join('');
+// }
+
+// Trumpas variantas
+// function stringasIskaicius(stringas) {
+//     return [...stringas].map(a => +a < 5 ? 0 : 1).join('')
 // }
 
 // console.log(stringasIskaicius('4536271809')); // 0101010101
@@ -375,8 +457,18 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Parašykite funkciją, kuri panaikins šauktuką jeigu jis yra paskutinis simbolis duotame string'e.
 
 // function paskutiniaiSauktukai(stringas) {
-//     // čia visa logika
-//     return
+//     const masyvas = string.split('');
+//     for (let i = masyvas.length; i > 0; i--) {
+//         if (masyvas[masyvas.length - 1] === '!') {
+//             masyvas.pop();
+//         }
+//     }
+//     return masyvas.join('');
+// }
+
+// Trumpas variantas
+// function paskutiniaiSauktukai(stringas) {
+//     return stringas.replace(/!+$/, '');
 // }
 
 // console.log(paskutiniaiSauktukai('Cha!')); // 'Cha'
@@ -388,8 +480,13 @@ console.log(tosPaciosRaides1('ą', '?')); // -1
 // Paraškykite funkciją, kuri grąžins didžiausią funkcijai pateikto masyvo skaičių.
 
 // function didziausiasSkaicius(masyvas) {
-//     // čia visa logika
-//     return
+//     const sortMasyvas = masyvas.sort((a, b) => b - a);
+//     return sortMasyvas[0];
+// }
+
+// Trumpas variantas
+// function didziausiasSkaicius(masyvas) {
+//     return Math.max(...masyvas);
 // }
 
 // console.log(didziausiasSkaicius([23, 54, 100, 35, 1, 78])); // 100
